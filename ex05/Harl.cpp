@@ -27,20 +27,18 @@ void	Harl::error(void) {
 }
 
 void	Harl::complain(std::string level) {
-	typedef void (Harl::*HarlFunctions)(void);
-
-	std::string levels[] = {"DEBUG", "INFO", "WARNING", "ERROR"};
-
-	HarlFunctions functions[] = {
+	void (Harl::*funcPtrArr[])(void) = {
 		&Harl::debug,
 		&Harl::info,
 		&Harl::warning,
 		&Harl::error
 	};
 
-	for (int i = 0; i < 4; ++i) {
+	std::string levels[] = {"DEBUG", "INFO", "WARNING", "ERROR"};
+
+	for (int i = 0; i < 4; i++) {
 		if(levels[i] == level) {
-			(this->*functions[i])();
+			(this->*funcPtrArr[i])();
 			return;
 		}
 	}

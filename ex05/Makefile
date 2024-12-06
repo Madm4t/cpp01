@@ -10,6 +10,9 @@ all: $(NAME)
 $(NAME): $(OBJS)
 	$(CPP) $(CPPFLAGS) -o $(NAME) $(OBJS)
 
+%.o: %.cpp
+	$(CPP) $(CPPFLAGS) -c $< -o $@
+
 clean:
 	rm -f $(OBJS)
 
